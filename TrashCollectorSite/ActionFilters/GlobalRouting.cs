@@ -16,7 +16,7 @@ namespace TrashCollectorSite.ActionFilters
             _claimsPrincipal = claimsPrincipal;
         }
 
-        public void OnActionExecuting(ActionExecutedContext context)
+        public void OnActionExecuting(ActionExecutingContext context)
         {
             var controler = context.RouteData.Values["controller"];
             if (controler.Equals("Home"))
@@ -31,19 +31,11 @@ namespace TrashCollectorSite.ActionFilters
                 }
             }
         }
-        public void OnActionExecuted(ActionExecutingContext context)
+        public void OnActionExecuted(ActionExecutedContext context)
         {
 
         }
 
-        void IActionFilter.OnActionExecuted(ActionExecutedContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IActionFilter.OnActionExecuting(ActionExecutingContext context)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
