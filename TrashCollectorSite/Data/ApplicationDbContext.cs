@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TrashCollectorSite.Models;
 
 namespace TrashCollectorSite.Data
 {
@@ -21,5 +22,7 @@ namespace TrashCollectorSite.Data
             builder.Entity<IdentityRole>().HasData(new IdentityRole{ Name = "Admin", NormalizedName = "ADMIN"});
 
         }
+
+        public DbSet<TrashCollectorSite.Models.Customer> Customer { get; set; }
     }
 }
