@@ -4,11 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrashCollectorSite.Data;
+using TrashCollectorSite.Models;
 
 namespace TrashCollectorSite.Controllers
 {
     public class EmployeeController : Controller
     {
+        public ApplicationDbContext _context;
+        public EmployeeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: EmployeeController1
         public ActionResult Index()
         {
@@ -30,10 +37,12 @@ namespace TrashCollectorSite.Controllers
         // POST: EmployeeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Employee newEmployee)
         {
             try
             {
+                _context.Employee.Add(newEmployee);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

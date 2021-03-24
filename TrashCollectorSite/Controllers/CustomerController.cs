@@ -4,11 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrashCollectorSite.Data;
+using TrashCollectorSite.Models;
 
 namespace TrashCollectorSite.Controllers
 {
     public class CustomerController : Controller
     {
+        public ApplicationDbContext _context;
+        public CustomerController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: CustomerController
         public ActionResult Index()
         {
@@ -30,10 +37,12 @@ namespace TrashCollectorSite.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Customer newCustomer)
         {
             try
             {
+                _context.Customer.Add(newCustomer);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
