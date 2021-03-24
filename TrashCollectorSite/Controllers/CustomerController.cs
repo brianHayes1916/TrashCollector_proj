@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TrashCollectorSite.Data;
 using TrashCollectorSite.Models;
@@ -19,7 +20,9 @@ namespace TrashCollectorSite.Controllers
         // GET: CustomerController
         public ActionResult Index()
         {
-            return View();
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            return View(customer);
         }
 
         // GET: CustomerController/Details/5
@@ -31,6 +34,8 @@ namespace TrashCollectorSite.Controllers
         // GET: CustomerController/Create
         public ActionResult Create()
         {
+            //var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             return View();
         }
 
@@ -41,6 +46,8 @@ namespace TrashCollectorSite.Controllers
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                newCustomer.IdentityUserId = userId;
                 _context.Customer.Add(newCustomer);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

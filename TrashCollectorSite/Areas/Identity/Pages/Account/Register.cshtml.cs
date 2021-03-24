@@ -112,6 +112,14 @@ namespace TrashCollectorSite.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        if(Input.Role == "Customer")
+                        {
+                            return RedirectToAction("Create", "Customer");
+                        }
+                        else if(Input.Role == "Employee")
+                        {
+                            return RedirectToAction("Create", "Employee");
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

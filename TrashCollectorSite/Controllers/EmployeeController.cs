@@ -19,6 +19,14 @@ namespace TrashCollectorSite.Controllers
         // GET: EmployeeController1
         public ActionResult Index()
         {
+            //query customer table to find customers in same zip code as employee who is logged in and have a pickup that is today
+
+            //1. query employee table for logged in employee
+            //2. get today's day of week -- DateTime
+            //3. query the customer table for any customers that have the same zip as the logged in employee
+            //4. query the customers with same zip and find who has a pickup day that is equal to today
+            //5. pass those customers to the view
+
             return View();
         }
 
