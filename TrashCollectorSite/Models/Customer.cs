@@ -13,13 +13,15 @@ namespace TrashCollectorSite.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string houseNumber { get; set; }
-        public string street { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string zip { get; set; }
-        public DateTime mostResentPickUp { get; set; }
-        public string pickUpDay { get; set; }
+        public string HouseNumber { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public DateTime MostResentPickUp { get; set; }
+        public string PickUpDay { get; set; }
+        public int AmountDue { get; set; }
+        //amount due might become amoubt of pickups and I'll multiply it by the price per piclup.
 
 
         [ForeignKey("IdentityUser")]

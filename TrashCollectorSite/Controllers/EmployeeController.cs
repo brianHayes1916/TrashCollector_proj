@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrashCollectorSite.Controllers
 {
-    public class EmployeeController1 : Controller
+    public class EmployeeController : Controller
     {
         // GET: EmployeeController1
         public ActionResult Index()
