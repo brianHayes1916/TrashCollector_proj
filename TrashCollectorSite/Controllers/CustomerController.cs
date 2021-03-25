@@ -67,10 +67,13 @@ namespace TrashCollectorSite.Controllers
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Customer changedCustomer)
         {
             try
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var customer =_context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+                //use .update to assign customer to the value of changedCustomer
                 return RedirectToAction(nameof(Index));
             }
             catch

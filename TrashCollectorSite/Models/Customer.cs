@@ -21,7 +21,10 @@ namespace TrashCollectorSite.Models
         public DateTime MostResentPickUp { get; set; }
         public string PickUpDay { get; set; }
         public int AmountDue { get; set; }
-        //amount due might become amoubt of pickups and I'll multiply it by the price per piclup.
+        public string ExtraPickUpDay { get; set; }
+        public DateTime SuspendStart { get; set; }
+        public DateTime SuspendEnd { get; set; }
+
 
 
         [ForeignKey("IdentityUser")]

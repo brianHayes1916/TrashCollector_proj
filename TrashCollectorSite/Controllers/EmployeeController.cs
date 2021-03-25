@@ -32,7 +32,7 @@ namespace TrashCollectorSite.Controllers
             var employee = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             string day = DateTime.Now.DayOfWeek.ToString();
             var zipCustomers = _context.Customer.Where(cust => cust.Zip.Equals(employee.Zip));
-            var todayPickup = zipCustomers.Where(cust => cust.PickUpDay == day);
+            var todayPickup = zipCustomers.Where(cust => cust.PickUpDay == day && cust.ExtraPickUpDay == day);
 
             return View(todayPickup);
         }
